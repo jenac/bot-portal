@@ -14,13 +14,13 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 /**
- * Test class for the BotController REST controller.
+ * Test class for the Bot REST controller.
  *
- * @see BotControllerResource
+ * @see BotResource
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = BotportalApp.class)
-public class BotControllerResourceIntTest {
+public class BotResourceIntTest {
 
     private MockMvc restMockMvc;
 
@@ -28,9 +28,9 @@ public class BotControllerResourceIntTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
-        BotControllerResource botControllerResource = new BotControllerResource();
+        BotResource botResource = new BotResource();
         restMockMvc = MockMvcBuilders
-            .standaloneSetup(botControllerResource)
+            .standaloneSetup(botResource)
             .build();
     }
 
@@ -39,8 +39,8 @@ public class BotControllerResourceIntTest {
     */
     @Test
     public void testState() throws Exception {
-        restMockMvc.perform(get("/api/bot-controller/state"))
-            .andExpect(status().is5xxServerError());
+        restMockMvc.perform(get("/api/bot/state"))
+            .andExpect(status().isOk());
     }
 
 }

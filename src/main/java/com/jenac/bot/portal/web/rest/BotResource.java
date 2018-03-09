@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * BotController controller
+ * Bot controller
  */
 @RestController
-@RequestMapping("/api/bot-controller")
-public class BotControllerResource {
+@RequestMapping("/api/bot")
+public class BotResource {
 
-    private final Logger log = LoggerFactory.getLogger(BotControllerResource.class);
+    private final Logger log = LoggerFactory.getLogger(BotResource.class);
 
     /**
     * GET state

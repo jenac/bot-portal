@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BotServiceService {
+public class BotService {
 
-    private final Logger log = LoggerFactory.getLogger(BotServiceService.class);
+    private final Logger log = LoggerFactory.getLogger(BotService.class);
 
 }
