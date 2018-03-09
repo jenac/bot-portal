@@ -6,7 +6,7 @@ package com.jenac.bot.portal.web.rest.vm.bot;
 public class StateVM {
     private String loginUrl;
     private String state;
-
+    private String avatarUrl;
 
     public String getLoginUrl() {
         return loginUrl;
@@ -22,5 +22,13 @@ public class StateVM {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }

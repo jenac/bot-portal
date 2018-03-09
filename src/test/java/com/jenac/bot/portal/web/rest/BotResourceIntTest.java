@@ -43,8 +43,8 @@ public class BotResourceIntTest {
     }
 
     /**
-    * Test state
-    */
+     * Test state
+     */
     @Test
     public void testState() throws Exception {
         restMockMvc.perform(get("/api/bot/state"))
@@ -53,5 +53,102 @@ public class BotResourceIntTest {
             .andExpect(jsonPath("$.loginUrl").value("http://www.google.com"))
             .andExpect(jsonPath("$.state").value("running"));
     }
+
+// should we save error into mongo?
+//        bot.on('error', err => {
+//        console.error('错误：', err)
+    /*
+    //send text message:
+    post: /bot/text
+    body:
+    {
+        to: "someone",
+        text: "hello, world"
+    }
+    response:
+    {
+        success: false
+        message: "some error"
+    }
+
+
+    //send md5 emotion
+    post: /bot/emotion/md5
+    body: {
+        to: "someone"
+        md5: '00c801cdf69127550d93ca52c3f853ff'
+    }
+    response:
+    {
+        success: false
+        message: "some error"
+    }
+
+    //send file
+    // bot.sendMsg({
+    //   file: Stream || Buffer || ArrayBuffer || File || Blob,
+    //   filename: 'bot-qrcode.jpg'
+    // }, ToUserName)
+    //   .catch(err => {
+    //     bot.emit('error',err)
+    //   })
+
+    //send picture
+    post: /bot/picture
+    body:
+    {
+        to: "sss"
+        file: request('https://raw.githubusercontent.com/nodeWechat/wechat4u/master/bot-qrcode.jpg'),
+        filename: 'bot-qrcode.jpg'
+    }
+    response:
+    {
+        success: false
+        message: "some error"
+    }
+
+    //send gif emotion
+    post: /bot/emotion/gif
+    body:
+    {
+        to: "kkk",
+        file: fs.createReadStream('./media/test.gif'),
+        filename: 'test.gif'
+    }
+    response:
+    {
+        success: false
+        message: "some error"
+    }
+
+
+    //send video
+    post: /bot/video
+    body:
+    {
+        to: "ok",
+        file: fs.createReadStream('./media/test.mp4'),
+        filename: 'test.mp4'
+    }
+    response:
+    {
+        success: false
+        message: "some error"
+    }
+
+    //send file
+    post: /bot/file
+    body:
+    {
+        to: "aaa",
+        file: fs.createReadStream('./media/test.txt'),
+        filename: 'test.txt'
+    }
+    response:
+    {
+        success: false
+        message: "some error"
+    }
+
 
 }
