@@ -1,13 +1,14 @@
 package com.jenac.bot.portal.web.rest;
 
 import com.jenac.bot.portal.service.BotService;
-import com.jenac.bot.portal.web.rest.vm.bot.StateVM;
+import com.jenac.bot.portal.web.rest.vm.bot.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * Bot controller
@@ -31,6 +32,31 @@ public class BotResource {
     public StateVM state() {
 
         return this.botService.getState();
+    }
+
+
+    @PostMapping("/text")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseVM sendText(@Valid @RequestBody SendTextVM sendTextVM) {
+        return this.botService.sendText(sendTextVM);
+    }
+
+    @PostMapping("/emotion")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseVM sendEmotion(@Valid @RequestBody SendEmotionVM sendEmotionVM) {
+        return this.botService.sendEmotion(sendEmotionVM);
+    }
+
+    @PostMapping("/picture")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseVM sendPicture(@Valid @RequestBody SendPictureVM sendPictureVM) {
+        return this.botService.sendPicture(sendPictureVM);
+    }
+
+    @PostMapping("/file")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseVM sendFile(@Valid @RequestBody SendFileVM sendFileVM) {
+        return this.botService.sendFile(sendFileVM);
     }
 
 }
