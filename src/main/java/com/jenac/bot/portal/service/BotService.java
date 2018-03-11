@@ -3,17 +3,23 @@ package com.jenac.bot.portal.service;
 import com.jenac.bot.portal.web.rest.vm.bot.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 public class BotService {
 
     private final Logger log = LoggerFactory.getLogger(BotService.class);
 
+    @Value("${application.botservice.host}")
+    private String botServiceHost;
+
+
+
     public StateVM getState() {
-        StateVM stateVM = new StateVM();
-        stateVM.setLoginUrl("http://www.google.com");
-        stateVM.setState("running");
+        RestTemplate restTemplate = new RestTemplate();
+        StateVM stateVM = restTemplate.getForObject(String.format("%s/bot/state", this.botServiceHost), StateVM.class);
         return stateVM;
     }
 
@@ -43,5 +49,9 @@ public class BotService {
         responseVM.setSuccess(true);
         responseVM.setMessage("");
         return responseVM;
+    }
+
+    public void setBotServiceHost(String botServiceHost) {
+        this.botServiceHost = botServiceHost;
     }
 }

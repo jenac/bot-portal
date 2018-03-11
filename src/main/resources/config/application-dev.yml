@@ -33,7 +33,7 @@ spring:
     data:
         mongodb:
             uri: mongodb://localhost:27017
-            database: botportal
+            database: chat-bot-dev
     mail:
         host: localhost
         port: 25
@@ -126,3 +126,5 @@ jhipster:
 # ===================================================================
 
 application:
+    botservice:
+        host: http://localhost:8888
