@@ -24,30 +24,27 @@ public class BotService {
     }
 
     public ResponseVM sendText(SendTextVM sendTextVM) {
-        ResponseVM responseVM = new ResponseVM();
-        responseVM.setSuccess(true);
-        responseVM.setMessage("");
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseVM responseVM = restTemplate.postForObject(String.format("%s/bot/text", this.botServiceHost), sendTextVM, ResponseVM.class);
         return responseVM;
     }
 
     public ResponseVM sendEmotion(SendEmotionVM sendEmotionVM) {
-        ResponseVM responseVM = new ResponseVM();
-        responseVM.setSuccess(true);
-        responseVM.setMessage("");
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseVM responseVM = restTemplate.postForObject(String.format("%s/bot/emotion", this.botServiceHost), sendEmotionVM, ResponseVM.class);
         return responseVM;
     }
 
     public ResponseVM sendPicture(SendPictureVM sendPictureVM) {
-        ResponseVM responseVM = new ResponseVM();
-        responseVM.setSuccess(true);
-        responseVM.setMessage("");
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseVM responseVM = restTemplate.postForObject(String.format("%s/bot/picture", this.botServiceHost), sendPictureVM, ResponseVM.class);
         return responseVM;
     }
 
     public ResponseVM sendFile(SendFileVM sendFileVM) {
-        ResponseVM responseVM = new ResponseVM();
-        responseVM.setSuccess(true);
-        responseVM.setMessage("");
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseVM responseVM = restTemplate.postForObject(String.format("%s/bot/file", this.botServiceHost), sendFileVM, ResponseVM.class);
         return responseVM;
     }
 
