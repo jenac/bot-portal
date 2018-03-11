@@ -103,31 +103,6 @@ public class BotResourceIntTest {
             .andExpect(jsonPath("$.success").value(true))
             .andExpect(jsonPath("$.message").value(""));
     }
-
-
-
-
-
 }
 
-/*
-// should we save error into mongo?
-//        bot.on('error', err => {
-//        console.error('错误：', err)
-    /*
 
-
-    //send file
-    // bot.sendMsg({
-    //   file: Stream || Buffer || ArrayBuffer || File || Blob,
-    //   filename: 'bot-qrcode.jpg'
-    // }, ToUserName)
-    //   .catch(err => {
-    //     bot.emit('error',err)
-    //   })
-
-   \
-
-
-
-}*/
