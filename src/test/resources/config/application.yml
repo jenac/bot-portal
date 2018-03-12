@@ -90,3 +90,6 @@ jhipster:
 # ===================================================================
 
 application:
+
+botservice:
+    host: http://localhost:8888
