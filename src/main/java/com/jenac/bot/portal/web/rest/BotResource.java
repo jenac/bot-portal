@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -35,8 +36,9 @@ public class BotResource {
     }
 
 
-    @PostMapping("/text")
+    @PostMapping(value = "/text", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
     public ResponseVM sendText(@Valid @RequestBody SendTextVM sendTextVM) {
         return this.botService.sendText(sendTextVM);
     }

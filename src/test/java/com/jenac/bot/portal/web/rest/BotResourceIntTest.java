@@ -6,20 +6,18 @@ import com.jenac.bot.portal.web.rest.vm.bot.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 /**
  * Test class for the Bot REST controller.
  *
@@ -31,14 +29,14 @@ public class BotResourceIntTest {
 
     private MockMvc restMockMvc;
 
-    @Autowired
-    private BotService botService;
+    @Mock
+    private BotService mockBotService;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
-        BotResource botResource = new BotResource(botService);
+        BotResource botResource = new BotResource(mockBotService);
         restMockMvc = MockMvcBuilders
             .standaloneSetup(botResource)
             .build();
@@ -49,6 +47,10 @@ public class BotResourceIntTest {
      */
     @Test
     public void testState() throws Exception {
+        StateVM stateVM = new StateVM();
+        stateVM.setState("running");
+        stateVM.setLoginUrl("http://www.google.com");
+        when(mockBotService.getState()).thenReturn(stateVM);
         restMockMvc.perform(get("/api/bot/state"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
@@ -59,6 +61,10 @@ public class BotResourceIntTest {
     @Test
     public void testSendText() throws Exception {
         SendTextVM sendTextVM = new SendTextVM();
+        ResponseVM responseVM = new ResponseVM();
+        responseVM.setMessage("");
+        responseVM.setSuccess(true);
+        when(mockBotService.sendText(sendTextVM)).thenReturn(responseVM);
         restMockMvc.perform(post("/api/bot/text")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(sendTextVM)))

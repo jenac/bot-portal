@@ -2,6 +2,7 @@ package com.jenac.bot.portal.service;
 
 import com.jenac.bot.portal.web.rest.vm.bot.*;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.web.client.RestTemplate;
 
@@ -9,6 +10,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 
+@Ignore
 public class BotServiceIntTest {
     static final String botServiceHost = "http://localhost:8888/";
     BotService botService;
