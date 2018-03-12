@@ -126,5 +126,6 @@ jhipster:
 # ===================================================================
 
 application:
-    botservice:
-        host: http://localhost:8888
+
+botservice:
+    host: http://localhost:8888

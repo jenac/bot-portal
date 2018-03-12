@@ -12,7 +12,7 @@ public class BotService {
 
     private final Logger log = LoggerFactory.getLogger(BotService.class);
 
-    @Value("${application.botservice.host}")
+    @Value("${botservice.host}")
     private String botServiceHost;
 
 
@@ -48,9 +48,9 @@ public class BotService {
         return responseVM;
     }
 
-//    public void setBotServiceHost(String botServiceHost) {
-//        this.botServiceHost = botServiceHost;
-//    }
+    public void setBotServiceHost(String botServiceHost) {
+        this.botServiceHost = botServiceHost;
+    }
 //
 //    public String getBotServiceHost() {
 //        return this.botServiceHost;
