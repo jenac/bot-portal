@@ -11,3 +11,4 @@ CMD echo "The application will start in ${JHIPSTER_SLEEP}s..." && \
 EXPOSE 8080 443
 
 ADD *.war /app.war
+ADD keystore.p12 /keystore.p12
