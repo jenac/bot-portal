@@ -1,7 +1,6 @@
 FROM openjdk:8-jre-alpine
 
 ADD *.war /app.war
-COPY keystore.p12 /keystore.p12
 
 ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
     JHIPSTER_SLEEP=0 \

@@ -48,12 +48,8 @@ node {
     stage('build docker') {
         sh "cp -R src/main/docker build/"
         sh "cp build/libs/*.war build/docker/"
-        sh "cp *.p12 build/docker/"
         sh "ls build/docker"
-        dir("build/docker") {
-            dockerImage = docker.build('jenac/botportal', '.')
-        }
-        
+        dockerImage = docker.build('jenac/botportal', 'build/docker')
     }
 
     stage('publish docker') {
