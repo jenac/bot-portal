@@ -48,6 +48,7 @@ node {
     stage('build docker') {
         sh "cp -R src/main/docker build/"
         sh "cp build/libs/*.war build/docker/"
+        sh "cp keystore.p12 build/docker/"
         sh "ls build/docker"
         dockerImage = docker.build('jenac/botportal', 'build/docker')
     }
