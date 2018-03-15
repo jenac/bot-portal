@@ -50,7 +50,10 @@ node {
         sh "cp build/libs/*.war build/docker/"
         sh "cp *.p12 build/docker/"
         sh "ls build/docker"
-        dockerImage = docker.build('jenac/botportal', 'build/docker')
+        dir("build/docker") {
+            dockerImage = docker.build('jenac/botportal', '.')
+        }
+        
     }
 
     stage('publish docker') {
