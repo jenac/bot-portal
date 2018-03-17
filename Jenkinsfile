@@ -49,12 +49,12 @@ node {
         sh "cp -R src/main/docker build/"
         sh "cp build/libs/*.war build/docker/"
         sh "ls build/docker"
-        dockerImage = docker.build('jenac/botportal:2.0.${env.BUILD_NUMBER}', 'build/docker')
+        dockerImage = docker.build('jenac/botportal', 'build/docker')
     }
 
     stage('publish docker') {
         docker.withRegistry('https://registry.hub.docker.com', 'dockerhub_jenac') {
-            dockerImage.push()
+            dockerImage.push("2.0.${env.BUILD_NUMBER}")
             dockerImage.push 'latest'
         }
     }
